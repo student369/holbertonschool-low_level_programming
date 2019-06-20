@@ -1,10 +1,12 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 /**
   * main - Entry point
   * Description: A C program to show if the
   * number n is positive negative or zero
+  * n change in each execution randomly
   * Return: 0
   */
 int main(void)
