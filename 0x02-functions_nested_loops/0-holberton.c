@@ -16,6 +16,6 @@ int main(void)
 	for (i = 0;  i <= l; i++)
 	{
 		_putchar(t[i]);
-	}	
+	}
 	return (0);
 }
