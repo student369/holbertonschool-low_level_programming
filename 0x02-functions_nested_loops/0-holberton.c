@@ -1,4 +1,3 @@
-#include <string.h>
 #include "holberton.h"
 
 /**
@@ -9,13 +8,13 @@
  */
 int main(void)
 {
-	char *t = "Holberton\n";
-	int l = strlen(t);
+	char *t = "Holberton";
 	int i;
 
-	for (i = 0;  i <= l; i++)
+	for (i = 0;  t[i] != '\0'; i++)
 	{
 		_putchar(t[i]);
 	}
+	_putchar('\n');
 	return (0);
 }
