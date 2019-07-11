@@ -10,3 +10,4 @@ int is_palindrome(char *s);
 int _r(int i, int n);
 int _pr(int i, int n);
 int _fil(char *f, char *l);
+int wildcmp(char *s1, char *s2);
