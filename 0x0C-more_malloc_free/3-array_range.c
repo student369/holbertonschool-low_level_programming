@@ -14,14 +14,10 @@ int *array_range(int min, int max)
 	int i = 0;
 
 	if (min > max)
-	{
 		return (0);
-	}
-	r = (int)malloc(sizeof(int) * ((max - min) + 1));
+	r = (int *)malloc(sizeof(int *) * ((max - min) + 1));
 	if (r == NULL)
-	{
 		return (0);
-	}
 	while (i < max)
 	{
 		*(r + i) = min++;
