@@ -17,17 +17,20 @@ int main(int ac, char *av[])
 		printf("Error\n");
 		exit(98);
 	}
-	if (!strcmp(av[2], "+") || !strcmp(av[2], "-") ||
-		!strcmp(av[2], "*") || !strcmp(av[2], "/") ||
-	    !strcmp(av[2], "%"))
+	if (!(strcmp(av[2], "+") == 0) ||
+	    !(strcmp(av[2], "-") == 0) ||
+	    !(strcmp(av[2], "*") == 0) ||
+	    !(strcmp(av[2], "/") == 0) ||
+	    !(strcmp(av[2], "%") == 0))
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	else if (atoi(ac[3]) == 0 && (av[2] == "/" || av[2] == "%"))
+	else if (atoi(av[3]) == 0 && (strcmp(av[2], "/") == 0||
+				      strcmp(av[2], "/") == 0))
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	return (get_op_func(av[2], atoi(av[1]), atoi(av[3])));
+	return (get_op_func(av[2])(atoi(av[1]), atoi(av[3])));
 }

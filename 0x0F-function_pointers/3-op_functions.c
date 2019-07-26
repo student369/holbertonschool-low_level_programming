@@ -1,5 +1,3 @@
-#include "function_pointers.h"
-
 /**
  * op_add - A function to sum two numbers
  * @a: The first number
@@ -49,13 +47,13 @@ int op_div(int a, int b)
 }
 
 /**
- * op_mul - A function to get the module of two numbers
+ * op_mod - A function to get the module of two numbers
  * @a: The first number
  * @b: The second number
  * Author: José Calderón
  * Return: The module
  */
-int op_mul(int a, int b)
+int op_mod(int a, int b)
 {
 	return (a % b);
 }
