@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * _strcpy - funtion to copy an string in other
@@ -10,16 +11,13 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	unsigned int i;
-	unsigned int n = sizeof(src);
+	unsigned int i = 0;
 
-	for (i = 0; src[i] != '\0'; i++)
+	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
+		i++;
 	}
-	for ( ; i < n; i++)
-	{
-		dest[i] = '\0';
-	}
+	dest[i] = '\0';
 	return (dest);
 }
