@@ -3,10 +3,10 @@
 
 
 /**
- * print_list - Function to allocate in memory
+ * list_len - Function to get the len of the linked list
  * @h: The linked list
  * Author: José Calderón
- * Return: void
+ * Return: the size
  */
 size_t list_len(const list_t *h)
 {
