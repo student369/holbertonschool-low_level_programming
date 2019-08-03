@@ -14,7 +14,7 @@ list_t *add_node(list_t **head, const char *str)
 	if (nw == NULL)
 		return (NULL);
 	nw->str = strdup(str);
-	nw->len = _strlen(nw->str);
+	nw->len = _strlen(str);
 	nw->next = (*head);
 	(*head) = nw;
 	return (nw);
@@ -25,9 +25,9 @@ list_t *add_node(list_t **head, const char *str)
  * Description: A function to get the size of a
  * string given.
  * @s: The string to get size
- * Return: void
+x * Return: void
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int i = 0;
 
