@@ -38,7 +38,7 @@ list_t *add_node_end(list_t **head, const char *str)
  * @s: The string to get size
  * Return: void
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int i = 0;
 
