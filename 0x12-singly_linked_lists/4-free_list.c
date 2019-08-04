@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "lists.h"
 
 
@@ -16,7 +15,7 @@ void free_list(list_t *head)
 	{
 		tmp = head;
 		head = head->next;
-		tmp->str = NULL;
+		free(tmp->str);
 		free(tmp);
 	}
 }
