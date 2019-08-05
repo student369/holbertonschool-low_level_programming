@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * free_list - Function to print a list
+ * free_listint2 - Function to free a linked list
  * @head: The linked list
  *
  * Return: void
