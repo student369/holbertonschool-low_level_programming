@@ -15,3 +15,7 @@ about linked list and the use of them.
 | 8-sum_listint.c | A function to get the sum of all the list. |
 | 9-insert_nodeint.c | A function to put a node in the speciphic position. |
 | 10-delete_nodeint.c | A function to delete an speciphic node. |
+| 100-reverse_listint.c | A function to reverse the linked list. |
+| 101-print_listint_safe.c | A function to print the linked list. |
+| 102-free_listint_safe.c | A function to frees the linked list. |
+| 103-find_loop.c | A function that catch the loop in the linked list. |
