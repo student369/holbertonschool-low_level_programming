@@ -14,7 +14,7 @@ int main(void)
 {
 	int n;
 	int l;
-	char *pre = "Last digit of ";
+	char *pre = "Last digit of";
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
