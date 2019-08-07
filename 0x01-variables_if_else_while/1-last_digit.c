@@ -23,7 +23,7 @@ int main(void)
 	{
 		printf("%s %d is %d and is greater that 5\n", pre, n, l);
 	}
-	else if (n == 0)
+	else if (l == 0)
 	{
 		printf("%s %d is %d and is 0\n", pre, n, l);
 	}
