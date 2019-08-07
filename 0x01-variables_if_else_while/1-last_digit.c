@@ -12,8 +12,7 @@
   */
 int main(void)
 {
-	int n;
-	int l;
+	int n, l;
 	char *pre = "Last digit of";
 
 	srand(time(0));
@@ -21,7 +20,7 @@ int main(void)
 	l = n % 10;
 	if (l > 5)
 	{
-		printf("%s %d is %d and is greater that 5\n", pre, n, l);
+		printf("%s %d is %d and is greater than 5\n", pre, n, l);
 	}
 	else if (l == 0)
 	{
@@ -29,7 +28,7 @@ int main(void)
 	}
 	else
 	{
-		printf("%s %d is %d and is less that 6 and not 0\n", pre, n, l);
+		printf("%s %d is %d and is less than 6 and not 0\n", pre, n, l);
 	}
 	return (0);
 }
