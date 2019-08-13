@@ -1,5 +1,5 @@
 #include "holberton.h"
-unsigned int _strlen(char *s);
+
 /**
  * read_textfile - Function to read and print a text
  * @filename: The file to read
