@@ -1,121 +1,72 @@
 #include "holberton.h"
+#define _BUFFER 1200
 
 /**
- * read_textfile - Function to read and print a text
- * @filename: The file to read
- * @letters: The text to write in the file
- *
- * Return: The letters to reand and print
+ * end - function that show the standar errors
+ * @n: error status
+ * @s: file name
+ * Return: 97, 98, 99 or 100
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+int end(int n, char *s)
 {
-	int fd;
-	unsigned int len, len2;
-	char *buff;
+	int val;
 
-	if (filename == NULL)
-		return (0);
-	fd = open(filename, O_CREAT | O_RDONLY);
-	if (fd == -1)
-		return (0);
-	len = letters + 1;
-	buff = (char *)malloc(sizeof(char) * len);
-	read(fd, buff, letters);
-	len2 = _strlen(buff);
-	buff[len2] = '\0';
-	write(1, buff, len2);
-	free(buff);
-	close(fd);
-	return (len2);
-}
-
-/**
- * create_file - Function to create a file
- * @filename: The file to read
- * @text_content: The text to write in the file
- *
- * Return: The letters to reand and print
- */
-int create_file(const char *filename, char *text_content)
-{
-	int fd;
-	unsigned int len;
-
-	if (filename == NULL)
-		return (-1);
-	if (text_content == NULL)
+	if (n == 97)
 	{
-		fd = open(filename, O_CREAT | O_RDWR, 0600);
-		return (1);
+		dprintf(STDERR_FILENO, "Usage: cp from_f to_f");
+		val = 97;
 	}
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0600);
-	if (fd == -1)
-		return (0);
-	len = _strlen(text_content);
-	write(fd, text_content, len);
-	close(fd);
-	return (1);
-}
-
-/**
- * append_text_to_file - Function to append text to a file.
- * @filename: The file to read
- * @text_content: The text to append
- *
- * Return: 1 or -1
- */
-int append_text_to_file(const char *filename, char *text_content)
-{
-	int fd;
-	unsigned int len;
-
-	if (filename == NULL)
-		return (-1);
-	if (text_content == NULL)
+	else if (n == 98)
 	{
-		fd = open(filename, O_WRONLY | O_APPEND);
-		if (fd == -1)
-			return (-1);
-		return (1);
+		dprintf(STDERR_FILENO, "Not posible to read file %s\n", s);
+		val = 98;
 	}
-	fd = open(filename, O_WRONLY | O_APPEND);
-	if (fd == -1)
-		return (0);
-	len = _strlen(text_content);
-	write(fd, text_content, len);
-	close(fd);
-	return (1);
-}
-
-/**
- * _strlen - funtion to get the size of an string
- * Description: A function to get the size of a
- * string given.
- * @s: The string to get size
- * Return: void
- */
-unsigned int _strlen(char *s)
-{
-	int i = 0;
-
-	while (s[i] != '\0')
+	else if (n == 99)
 	{
-		i++;
+		dprintf(STDERR_FILENO, "Error writing in the file %s\n", s);
+		val = 99;
 	}
-	return (i);
+	else
+	{
+		dprintf(STDERR_FILENO, "Error closing the file\n");
+		val = 100;
+	}
+	return (val);
 }
 
 /**
- * main - Program to copy a file in another.
- * Description: A function that copies the contents
- * of a text in other.
- * @ac: The count of params
- * @av: The params given to the command.
- *
+ * main - copies the file in another file
+ * @ac: Count of params
+ * @av: The params given
+ * Return: 0 in success, 97, 98, 99 or 100 in error case
  */
 int main(int ac, char *av[])
 {
+	int _fto, _from, val_r;
+	char *from, *to, buff[1024];
+
 	if (ac != 3)
-		exit(97);
-	return (0);
+		exit(end(97, NULL));
+	from = av[1], to = av[2];
+	_from = open(from, O_RDONLY);
+	if (_from == -1)
+		exit(end(98, from));
+	_fto =  open(to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (_fto == -1)
+	{
+		exit(close(_from) == -1 ? end(_from, NULL) :		end(99, to));
+	}
+	val_r = read(_from, &buff, _BUFFER);
+	while (val_r)
+	{
+		if (val_r == -1)
+			exit(close(_from) == -1 ? end(_from, NULL) :
+				      close(_fto) == -1 ? end(_fto, NULL) :
+				      end(98, from));
+		if (write(_fto, &buff, val_r) == -1)
+			exit(end(99, to));
+		val_r = read(_from, &buff, _BUFFER);
+	}
+	return(close(_from) == -1 ? end(_from, NULL) :
+	       close(_fto) == -1 ? end(_fto, NULL) : 0);
 }
