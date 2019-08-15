@@ -1,0 +1,10 @@
+EXEC(3)                     Linux Programmer's Manual                     EXEC(3)
+
+
+
+NAME
+       execl, execlp, execle, execv, execvp, execvpe - execute a file
+
+SYNOPSIS
+       #include <unistd.h>
+
