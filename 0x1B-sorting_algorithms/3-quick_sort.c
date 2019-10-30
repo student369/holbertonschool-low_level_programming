@@ -72,5 +72,7 @@ int partition(int *array, int lo, int hi, int os)
  */
 void quick_sort(int *array, size_t size)
 {
+	if (size < 2)
+		return;
 	qs(array, 0, size - 1, size);
 }
