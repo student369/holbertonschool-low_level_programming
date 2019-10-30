@@ -18,7 +18,7 @@ void qs(int *array, int lo, int hi, int os)
 	if (lo < hi)
 	{
 		p = partition(array, lo, hi, os);
-		qs(array, lo, p, os);
+		qs(array, lo, p - 1, os);
 		qs(array, p + 1, hi, os);
 	}
 }
@@ -39,26 +39,24 @@ int partition(int *array, int lo, int hi, int os)
 {
 	int pivot, i, j, tmp = 0;
 
-	pivot = array[lo + (hi - lo) / 2];
-	i = lo - 1;
-	j = hi + 1;
-	while (1)
+	pivot = array[hi];
+	i = lo;
+	for (j = lo; j < hi; j++)
 	{
-		do {
-			i++;
-		} while (array[i] < pivot);
-		do {
-			j--;
-		} while (array[j] > pivot);
-		if (i >= j)
+		if (array[j] < pivot)
 		{
-			return (j);
+			tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
+			print_array(array, os);
+			i++;
 		}
-		tmp = array[i];
-		array[i] = array[j];
-		array[j] = tmp;
-		print_array(array, os);
 	}
+	tmp = array[i];
+	array[i] = array[hi];
+	array[hi] = tmp;
+	print_array(array, os);
+	return (i);
 }
 
 /**
