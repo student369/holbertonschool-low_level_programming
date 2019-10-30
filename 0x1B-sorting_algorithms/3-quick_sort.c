@@ -55,7 +55,6 @@ int partition(int *array, int lo, int hi, int os)
 	tmp = array[i];
 	array[i] = array[hi];
 	array[hi] = tmp;
-	print_array(array, os);
 	return (i);
 }
 
