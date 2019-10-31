@@ -16,7 +16,7 @@ int co(char c)
 	if (c == 'A')
 		idc = idc - 16;
 	if (c == '1')
-		idc = idc + 8;
+		idc = idc + 9;
 	if (c == 'K')
 		idc = idc + 10;
 	return (idc);
