@@ -39,7 +39,7 @@ int partition(int *array, int lo, int hi, int os)
 {
 	int pivot = 0, i = 0, j = 0, tmp = 0;
 
-	pivot = array[hi];
+	pivot = array[lo];
 	i = lo - 1;
 	j = hi + 1;
 	while (1)
