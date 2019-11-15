@@ -1,0 +1,17 @@
+#################
+# A Makefile to compile and clean code in c
+# Use:
+# make [all | clean | oclean | fclean | re] -f 3-Makefile
+CC = gcc
+SRC = $(NAME).c
+OBJ = $(NAME).o
+NAME = holberton
+RM = rm
+all: main.o $(NAME).o
+	${CC} $< $(OBJ) -o $(NAME)
+clean:
+	$(RM) -f *~ \#*\# $(NAME)
+oclean:
+	$(RM) -f main.o $(OBJ)
+fclean: clean oclean
+re: oclean all
