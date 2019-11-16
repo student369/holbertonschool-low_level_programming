@@ -1,27 +1,20 @@
-#########################################################
-#
-# A Simple Makefile
-#
-# Description:
-#-------------
-# A makefile to construct an executable of a some files
-# with some extra C flags
-#
-# Usage:
-# ------
+#################
+# A Makefile to compile and clean code in c
+# Use:
 # make [all | clean | oclean | fclean | re] -f 4-Makefile
-#
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic
-SRC = $(NAME).c
-OBJ = $(NAME).o
+SRC = main.c $(NAME).c
+OBJ = $(SRC:.c=.o)
 NAME = holberton
 RM = rm
-all: main.o $(NAME).o
-	${CC} main.o $(OBJ) -o $(NAME)
+CFLAGS = -Werror -Wall -Wextra -pedantic
+%.o: %.c m.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+all: $(OBJ)
+	 $(CC) $(OBJ) -o $(NAME)
 clean:
 	$(RM) -f *~ \#*\# $(NAME)
 oclean:
-	$(RM) -f main.o $(OBJ)
+	$(RM) -f *.o
 fclean: clean oclean
 re: oclean all
