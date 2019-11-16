@@ -3,20 +3,16 @@
 # Use:
 # make [all | clean | oclean | fclean | re] -f 100-Makefile
 CC = gcc
-SRC = main.c $(NAME).c 
+SRC = main.c $(NAME).c
 OBJ = $(SRC:.c=.o)
 NAME = holberton
-RM = rm
-HD = m.h
-CFLAGS = -Werror -Wall -Wextra -pedantic
-%.o: %.c $(HD)
-	$(CC) $(CFLAGS) -c -o $@ $<
-all: $(HD) clean $(NAME)
-$(NAME): $(OBJ)
+CFLAGS = -Wall -Werror -Wextra -pedantic
+.PHONY: all clean oclean fclean re
+all: m.h $(OBJ)
+	 $(CC) -o $(NAMEE) $(OBJ)
 clean:
 	$(RM) -f *~ \#*\# $(NAME)
 oclean:
 	$(RM) -f *.o
 fclean: clean oclean
-re: $(HD) oclean $(OBJ)
-.PHONY: clean oclean $(CC)
+re: oclean all
