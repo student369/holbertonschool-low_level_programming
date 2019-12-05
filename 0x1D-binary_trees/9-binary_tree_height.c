@@ -1,21 +1,38 @@
 #include "binary_trees.h"
 
+size_t bt_height(const binary_tree_t *t, size_t h);
 /**
- * binary_tree_height - function to get the heiht of a node
+ * bt_height - recursive function to get the height of the BT
  *
- * @tree: The tree to check
+ * @t: The tree.
+ * @h: The current height
  *
- * Return: 1 or 0
+ * Return: the height
+ */
+size_t bt_height(const binary_tree_t *t, size_t h)
+{
+	size_t hl, hr;
+
+	if (t == NULL)
+		return (h);
+	h++;
+	hl = bt_height(t->left, h);
+	hr = bt_height(t->right, h);
+	if (hl > hr)
+		return (hl);
+	return (hr);
+}
+
+/**
+ * binary_tree_height - function to get the height of the BT
+ *
+ * @tree: The tree.
+ *
+ * Return: the height
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	int h = 0;
-
 	if (tree == NULL)
 		return (0);
-	if (tree->left != NULL)
-		h++;
-	if (tree->right != NULL)
-		h++;
-	return (h);
+	return (bt_height(tree, 0) - 1);
 }
