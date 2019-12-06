@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 
-int binary_tree_is_full(const binary_tree_t *tree);
-size_t bt_heigh(const binary_tree_t *tree);
 /**
  * binary_tree_is_full - function to check if the BT is full
  *
