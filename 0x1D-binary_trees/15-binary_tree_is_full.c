@@ -1,26 +1,27 @@
 #include "binary_trees.h"
+#include <stdio.h>
 
+size_t binary_tree_one_child(const binary_tree_t *tree);
 /**
- * binary_tree_is_leaf - function to check the leads in the  BT
+ * binary_tree_one_child - function to count the nodes with
+ * one child
  *
- * @node: The node to check
+ * @tree: The tree
  *
- * Return: the new node.
+ * Return: 0 or more
  */
-int binary_tree_is_leaf(const binary_tree_t *node)
+size_t binary_tree_one_child(const binary_tree_t *tree)
 {
-	int l = 0;
+	int c = 0;
 
-	if (node == NULL)
+	if (tree == NULL)
 		return (0);
-	if (node->left == NULL)
-		l++;
-	if (node->right == NULL)
-		l++;
-	if (l == 2)
-		return (1);
-	else
-		return (0);
+	if ((tree->left == NULL && tree->right != NULL) ||
+	    (tree->left != NULL && tree->right == NULL))
+		c = 1;
+	return (binary_tree_one_child(tree->left)
+		+ c +
+		binary_tree_one_child(tree->right));
 }
 
 /**
@@ -35,9 +36,8 @@ int binary_tree_is_full(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	if ((binary_tree_is_leaf(tree) == 1) ||
-		(tree->left != NULL && tree->right != NULL))
+	if (binary_tree_one_child(tree))
+		return (0);
+	else
 		return (1);
-	binary_tree_is_full(tree->left);
-	binary_tree_is_full(tree->right);
 }
