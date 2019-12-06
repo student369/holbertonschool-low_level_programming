@@ -1,6 +1,6 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
+int binary_tree_is_leaf_depth(const binary_tree_t *node);
 /**
  * binary_tree_depth - function to get the depth of a node
  *
@@ -23,13 +23,14 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 }
 
 /**
- * binary_tree_is_leaf - function to check the leads in the  BT
+ * binary_tree_is_leaf_depth - function to check
+ * the leads in the  BT and the same depth
  *
  * @node: The node to check
  *
  * Return: the new node.
  */
-int binary_tree_is_leaf(const binary_tree_t *node)
+int binary_tree_is_leaf_depth(const binary_tree_t *node)
 {
 	int l = 0, cd = 0;
 	static int d, pd;
@@ -72,7 +73,7 @@ size_t binary_tree_leaves(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 	return (binary_tree_leaves(tree->left)
-		+ binary_tree_is_leaf(tree) +
+		+ binary_tree_is_leaf_depth(tree) +
 		binary_tree_leaves(tree->right));
 }
 
