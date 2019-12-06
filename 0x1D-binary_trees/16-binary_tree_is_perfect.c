@@ -1,31 +1,9 @@
 #include "binary_trees.h"
-size_t bt_height(const binary_tree_t *tree);
-size_t binary_tree_one_child(const binary_tree_t *tree);
-/**
- * binary_tree_one_child - function to count the nodes with
- * one child
- *
- * @tree: The tree
- *
- * Return: 0 or more
- */
-size_t binary_tree_one_child(const binary_tree_t *tree)
-{
-	int c = 0;
 
-	if (tree == NULL)
-		return (0);
-	if ((tree->left == NULL && tree->right != NULL) ||
-	    (tree->left != NULL && tree->right == NULL))
-		c = 1;
-	return (binary_tree_one_child(tree->left)
-		+ c +
-		binary_tree_one_child(tree->right));
-}
-
+int binary_tree_is_full(const binary_tree_t *tree);
+size_t bt_heigh(const binary_tree_t *tree);
 /**
- * binary_tree_is_full - function to check if the
- * BT is full.
+ * binary_tree_is_full - function to check if the BT is full
  *
  * @tree: The tree.
  *
@@ -33,23 +11,25 @@ size_t binary_tree_one_child(const binary_tree_t *tree)
  */
 int binary_tree_is_full(const binary_tree_t *tree)
 {
-	if (tree == NULL)
+	if (!tree)
 		return (0);
-	if (binary_tree_one_child(tree))
-		return (0);
-	else
+	if (!tree->left && !tree->right)
 		return (1);
+	if (tree->left && tree->right)
+		return (binary_tree_is_full(tree->left) &&
+			binary_tree_is_full(tree->right));
+	return (0);
 }
 
 /**
- * bt_height - function to get the height
+ * bt_heigh - function to get the height
  * of the BT
  *
  * @tree: The tree.
  *
  * Return: The height
  */
-size_t bt_height(const binary_tree_t *tree)
+size_t bt_heigh(const binary_tree_t *tree)
 {
 	size_t l, r;
 
@@ -58,8 +38,8 @@ size_t bt_height(const binary_tree_t *tree)
 	if (tree->left == NULL &&
 	    tree->right == NULL)
 		return (0);
-	l = bt_height(tree->left);
-	r = bt_height(tree->right);
+	l = bt_heigh(tree->left);
+	r = bt_heigh(tree->right);
 	if (l > r)
 		return (l + 1);
 	else
@@ -79,8 +59,8 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (0);
-	l = bt_height(tree->left);
-	r = bt_height(tree->right);
+	l = bt_heigh(tree->left);
+	r = bt_heigh(tree->right);
 	if (!tree->left)
 		l--;
 	if (!tree->right)
