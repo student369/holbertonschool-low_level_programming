@@ -33,7 +33,7 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 int binary_tree_is_leaf_depth(const binary_tree_t *node)
 {
 	int l = 0, cd = 0;
-	static int d, pd;
+	static int d = 0, pd;
 
 	if (node == NULL)
 		return (0);
