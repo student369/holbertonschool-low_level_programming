@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 
-int bt_is_perfect(const binary_tree_t *t, int d, int l);
-size_t bt_depth(const binary_tree_t *tree);
 /**
  * bt_depth - function to get the depth of a node
  * top down
