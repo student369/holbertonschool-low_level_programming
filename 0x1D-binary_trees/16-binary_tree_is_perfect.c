@@ -1,71 +1,49 @@
 #include "binary_trees.h"
 
+int bt_is_perfect(const binary_tree_t *t, int d, int l);
+size_t bt_depth(const binary_tree_t *tree);
 /**
- * binary_tree_is_full - function to check if the BT is full
+ * bt_depth - function to get the depth of a node
+ * top down
  *
- * @tree: The tree.
+ * @tree: The tree to check
  *
  * Return: 1 or 0
  */
-int binary_tree_is_full(const binary_tree_t *tree)
+size_t bt_depth(const binary_tree_t *tree)
 {
-	if (!tree)
-		return (0);
-	if (!tree->left && !tree->right)
-		return (1);
-	if (tree->left && tree->right)
-		return (binary_tree_is_full(tree->left) &&
-			binary_tree_is_full(tree->right));
-	return (0);
-}
-
-/**
- * bt_heigh - function to get the height
- * of the BT
- *
- * @tree: The tree.
- *
- * Return: The height
- */
-size_t bt_heigh(const binary_tree_t *tree)
-{
-	size_t l, r;
+	int d = 0;
 
 	if (tree == NULL)
 		return (0);
-	if (tree->left == NULL &&
-	    tree->right == NULL)
-		return (0);
-	l = bt_heigh(tree->left);
-	r = bt_heigh(tree->right);
-	if (l > r)
-		return (l + 1);
-	else
-		return (r + 1);
+	while (tree != NULL)
+	{
+		d++;
+		tree = tree->left;
+	}
+	return (d);
 }
-/**
- * binary_tree_balance - function to get the balance
- * factor of the BT
- *
- * @tree: The tree.
- *
- * Return: The count of leaves
- */
-int binary_tree_balance(const binary_tree_t *tree)
-{
-	int l, r, b = 0;
 
-	if (tree == NULL)
+/**
+ * bt_is_perfect - function to check it the BT
+ * is perfect recursibly.
+ *
+ * @t: The tree
+ * @d: The depht
+ * @l: The level
+ *
+ * Return: 1 or 0
+ */
+int bt_is_perfect(const binary_tree_t *t, int d, int l)
+{
+	if (t->left == NULL && t->right == NULL)
+		return ((d == l + 1) ? 1 : 0);
+	if (t->left == NULL || t->right == NULL)
 		return (0);
-	l = bt_heigh(tree->left);
-	r = bt_heigh(tree->right);
-	if (!tree->left)
-		l--;
-	if (!tree->right)
-		r--;
-	b = l - r;
-	return (b);
+	return (bt_is_perfect(t->left, d, l + 1) &&
+		bt_is_perfect(t->right, d, l + 1));
 }
+
 /**
  * binary_tree_is_perfect - function to check it the BT
  * is perfect.
@@ -76,10 +54,10 @@ int binary_tree_balance(const binary_tree_t *tree)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	if (!tree)
+	int d;
+
+	if (tree == NULL)
 		return (0);
-	if (binary_tree_is_full(tree) == 1 &&
-	    binary_tree_balance(tree) == 0)
-		return (1);
-	return (0);
+	d = bt_depth(tree);
+	return (bt_is_perfect(tree, d, 0));
 }
